@@ -1,0 +1,80 @@
+<!-- header -->
+<div class="head">
+  <img src="../assets/images/header.jpg" alt="">
+</div>
+<!-- header end   -->
+<!-- navbar -->
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="['']" >BlooDonor</a>
+    </div>
+
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li>
+          <a *ngIf="isUserLoggedIn" (click)='navigator()' style="cursor:pointer">Profile</a>
+        </li>
+        <li>
+          <a [routerLink]="['']">Home</a>
+        </li>
+        <li>
+          <a href="#about">About us</a>
+        </li>
+        <li>
+          <a href="#contact">Contact us</a>
+        </li>
+        <li>
+          <a *ngIf="isSuperAdminLoggedIn" [routerLink]="['/superadmin']">Manage Admin</a>
+        </li>
+        <li>
+          <a *ngIf="isSuperAdminLoggedIn" [routerLink]="['/superadmin/srecieverslist']">Manage Reciever</a>
+        </li>
+        <li>
+          <a *ngIf="isSuperAdminLoggedIn" [routerLink]="['/superadmin/sdonorslist']">Manage Donor</a>
+        </li>
+        <li>
+          <a *ngIf="isAdminLoggedIn" [routerLink]="['/admin/arecieverslist']">Manage Reciever</a>
+        </li><li>
+          <a *ngIf="isAdminLoggedIn" [routerLink]="['/admin/bloodstock']">Add Stock</a>
+        </li>
+        <li>
+          <a *ngIf="isAdminLoggedIn" [routerLink]="['/admin']">Manage Donor</a>
+        </li>
+       <li>
+          <a *ngIf="isDonorLoggedIn" [routerLink]="['/donprofstruct/dadminlist']">Blood Bank List</a>
+        </li>
+        <li *ngIf="isRecieverLoggedIn" [routerLink]="['/recprofstruct/bloodbanks']" >
+          <a>Blood Banks</a>
+        </li>
+
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a class="dropdown-toggle" *ngIf="isLoggedOut" data-toggle="dropdown" [routerLink]="['/signup']"><span class="glyphicon glyphicon-log-out"></span>
+           SignUp
+          </a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" *ngIf="isLoggedOut" data-toggle="dropdown"  [routerLink]="['/login']">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+
+        </li>
+        <li class="dropdown" *ngIf="isLoggedIn">
+          <a class="dropdown-toggle" data-toggle="dropdown" (click)='logout()'>
+            <span class="glyphicon glyphicon-log-out"></span> Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- navbar end -->
+<router-outlet></router-outlet>

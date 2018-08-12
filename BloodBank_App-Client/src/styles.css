@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+
+    background-image: url(./assets/images/bgimg.jpg);
+    background-repeat: repeat;
+}
+.panel-heading{
+    background-color: #f0d6d6;
+    color: #8b0000;
+}
+.panel-title{
+    font-size: 40px;
+   
+}
+form div label{
+    color: #fff;
+}
+form h2{
+    color: #fff;
+}

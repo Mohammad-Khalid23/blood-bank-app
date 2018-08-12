@@ -1,0 +1,179 @@
+      
+        <div class="tab-content">
+  
+        <div class="tab-pane active" id="home">
+          <!-- <div class="table-responsive"> -->
+        
+            <div class="col-md-12">
+              <h1 *ngIf = "isRecieverLogin">Blood Banks</h1>
+              <h1 *ngIf = "isDonorLogin">Manage Admins</h1> <h1 *ngIf = "isSuperAdminLogin">Donate Blood</h1>
+              <table class="table   ">
+  <thead>
+    <tr>
+      
+      <th class="text-center">Name</th>
+      <th class="text-center" *ngIf = "isDonorLogin">Email</th>
+      <th class="text-center">Branch</th>
+      <th class="text-center">Contact Number</th>
+      <th class="text-center" *ngIf = "isDonorLogin">Manager</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      
+      <td>{{ item.name }}</td>
+      <td *ngIf = "isDonorLogin">{{ item.email }}</td>
+      <!-- <td>{{ item.password }}</td> -->
+      <td>{{ item.details.branch }}</td>
+      <td>{{ item.details.contactNumber }}</td>
+      <td *ngIf = "isDonorLogin">{{ item.details.manager}}
+        <div class="btnright"  >
+          <button class="itembutton" class="btn btn-danger" (click)="showEditItemsForm(item)">
+            <i class="fa fa-edit"></i>
+          </button>
+          <button class="itembutton" class="btn btn-danger" (click)="deleteItems(item)">
+            <i class="fa fa-minus"></i>
+          </button>
+        </div>
+      </td>
+      <td *ngIf = "isSuperAdminLogin"><div class="btnright" *ngIf = "isSuperAdminLogin">
+        <button class="btn btn-danger"  (click)="showmessage()">
+          <i class="fa fa-plus"></i> Donate Blood</button>
+      </div></td>
+      <td *ngIf = "isRecieverLogin"><div class="btnright" >
+        <button class="btn btn-danger"  (click)="showStock(item)">
+          <i class="fa fa-plus" ></i> View Stock</button>
+      </div></td>
+      
+    </tr>
+  </tbody>
+</table>
+
+<button class="btn btn-danger" *ngIf = "isDonorLogin"  (click)="showAdminForm()">
+  <i class="fa fa-plus"></i> Add Blood Bank</button>
+
+  
+<br />
+<br />
+<div class=" col-lg-6 " *ngIf = "isShowStock" > 
+    <button class="btn btn-danger" (click)="hideStock()">
+       Close</button>
+  <table class="table table-bordered" text="white">
+    <tbody>
+      <tr>
+        <td>Blood Bank Name: </td>
+        <td>{{bloodBankName}}</td>
+      </tr>
+      <tr>
+        <td>A+ </td>
+        <td >{{stocks.A_pos}}</td>
+      </tr>
+      <tr>
+        <td>A- </td>
+        <td>{{stocks.A_neg}}</td>
+      </tr>
+    <tr>
+        <td>B+ </td>
+        <td>{{stocks.B_pos}}</td>
+      </tr>
+      <tr>
+        <td>B- </td>
+        <td>{{stocks.B_neg}}</td>
+      </tr>
+      <tr>   
+      <td>AB+ </td>
+        <td>{{stocks.AB_pos}}</td>
+      </tr>
+      <tr>
+        <td>AB- </td>
+        <td>{{stocks.AB_neg}}</td>
+      </tr>
+      <tr>
+        <td>O+ </td>
+        <td>{{stocks.O_pos}}</td>
+      </tr>
+      <tr>   
+      <td>O- </td>
+        <td>{{stocks.O_neg}}</td>
+      </tr>
+     
+    </tbody>
+  </table>
+
+
+ 
+</div>
+
+<form *ngIf="itemsForm">
+  <h2>Add New Branch</h2>
+  <div class="form-group">
+    <label >Blood Bank Name:</label>
+    <input type="text" name="name" [(ngModel)]="newItems.name" />
+  </div>
+  <div class="form-group">
+    <label >Email:</label>
+    <input type="text" name="email" [(ngModel)]="newItems.email" />
+  </div>
+  <div class="form-group"> 
+    <label >Password:</label>
+    <input type="text" name="password" [(ngModel)]="newItems.password" />
+  </div>
+  <div class="form-group">
+    <label >Branch:</label>
+    <input type="text" name="branch" [(ngModel)]="newItems.details.branch" />
+  </div>
+  <div class="form-group">
+    <label >Contact:</label>
+    <input type="text" name="contactNumber" [(ngModel)]="newItems.details.contactNumber" />
+  </div>
+  <div class="form-group">
+    <label >Manager:</label>
+    <input type="text" name="manager" [(ngModel)]="newItems.details.manager" />
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-danger" (click)="bloodBankSignup(newItems)">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="cancelNewItems()">Cancel</button>
+  </div>
+</form>
+
+<form *ngIf="editItemsForm">
+  <h2>Edit Details</h2>
+  <div class="form-group">
+    <label >Blood Bank Name:</label>
+    <input type="text" name="name" [(ngModel)]="editedItems.name" />
+  </div>
+  <div class="form-group"> 
+    <label >Email:</label>
+    <input type="text" name="email" [(ngModel)]="editedItems.email" />
+  </div>
+  <div class="form-group">
+    <label >Password:</label>
+    <input type="text" name="password" [(ngModel)]="editedItems.password" />
+  </div>
+  <div class="form-group">
+    <label >Branch:</label>
+    <input type="text" name="branch" [(ngModel)]="editedItems.details.branch" />
+  </div>
+  <div class="form-group">
+    <label >Contact:</label>
+    <input type="text" name="contact" [(ngModel)]="editedItems.details.contactNumber" />
+  </div>
+  <div class="form-group">
+    <label >Manager:</label>
+    <input type="text" name="manager" [(ngModel)]="editedItems.details.manager" />
+  </div>
+  <div class="form-group">
+    <button type="button" class="btn btn-danger" (click)="updateItems(editedItems)">Submit</button>
+    <button type="button" class="btn btn-danger" (click)="cancelEdits()">Cancel</button>
+  </div>
+</form>
+
+</div>
+<!--/tab-pane-->
+
+<!--/tab-content-->
+
+</div><!-- /col-9 -->
+</div>
+<!--/row-->

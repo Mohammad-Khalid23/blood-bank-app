@@ -1,0 +1,15 @@
+.table-responsive{
+    min-width: 975px;
+}
+.btnright{
+    float: right;
+}
+h1{
+    color: #fff;
+}
+tr td{
+    color: #fff;
+}
+th {
+    color: #fff;
+}

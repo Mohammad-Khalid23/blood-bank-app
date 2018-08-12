@@ -1,0 +1,26 @@
+
+
+  <div class="jumbotron"><h1 class="text-center">Admin Panel</h1></div>
+  
+  <!-- Main Body -->
+
+  		<div class="col-lg-3"><!--left col-->
+              
+          <ul class="list-group">
+            <li class="list-group-item text-muted">Profile</li>
+            <li class="list-group-item text-right "><span class="pull-left"><strong>Admin Name</strong></span>{{data.details.manager}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Blood Bank</strong></span>{{data.name}}</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Branch</strong></span>{{data.details.branch}}</li> 
+          </ul> 
+        
+          
+               
+          
+          
+          
+          
+        </div><!--/col-3-->
+    	<div class="col-lg-9">
+          
+              <router-outlet></router-outlet>
+              </div><!--/row-->
